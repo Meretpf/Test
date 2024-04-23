@@ -1,27 +1,62 @@
 ---
-title: "CMV"
+title: "Final Assessement Cytomegalivirus"
 author: "Meret Pfister"
-format: html
-editor: visual
+date: "`r date()`"
+format:
+  html:
+    toc: true
+    code-fold: show
+    code-tools: true
+    df-print: paged
+    embed-resources: true
+  pdf:
+    toc: true
+  docx:
+    toc: true
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
 ```{r}
-1 + 1
+#| output: false
+# Load libraries
+library(here)
+library(tidyverse)
+library(medicaldata)
+library(lubridate)
 ```
 
-You can add options to executable code like this
+## Introduction
+
+The aim of this exercise is to visualize the increase in laboratory-confirmed cases of COVID-19 in Switzerland during autumn 2020.
+
+## Data
+
+We read and process the data of laboratory-confirmed cases of COVID-19 in Switzerland as reported by the [Federal Office of Public Health](https://idd.bag.admin.ch/).
 
 ```{r}
-#| echo: false
-2 * 2
+#| output: false
+# Read data
+data <- cytomegalovirus
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+```{r}
+# Process data
+data_f <- data |>
+  mutate(diagnosis = factor(diagnosis))
+```
+
+
+```{r}
+data_counts <- data %>%
+  group_by(diagnosis) %>%
+  count()
+```
+## Visualization
+```{r}
+ggplot(data_counts, aes(x= diagnosis, y = n)) + geom_bar(stat="identity") + theme (axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+
+## Conclusions
+
+The number of laboratory-confirmed cases of COVID-19 in Switzerland rapidly increased during October 2020 and subsequently declined.
