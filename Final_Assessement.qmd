@@ -26,11 +26,11 @@ library(lubridate)
 
 ## Introduction
 
-The aim of this exercise is to visualize the increase in laboratory-confirmed cases of COVID-19 in Switzerland during autumn 2020.
+The aim of this report is to visualize de amount of Patients per diagnosis who underwent T-cell replete, matched sibling donor reduced-intensity conditioning allogeneic hematopoietic stem cell transplant. The 13 different diagnosis are Non-Hodgknin- and Hodgkin-Lymphomas, such as anemias and renal carcinoma.
 
 ## Data
 
-We read and process the data of laboratory-confirmed cases of COVID-19 in Switzerland as reported by the [Federal Office of Public Health](https://idd.bag.admin.ch/).
+We read and process the data of laboratory-confirmed Cytomegalyvirus
 
 ```{r}
 #| output: false
@@ -59,4 +59,4 @@ ggplot(data_counts, aes(x= diagnosis, y = n)) + geom_bar(stat="identity") + them
 
 ## Conclusions
 
-The number of laboratory-confirmed cases of COVID-19 in Switzerland rapidly increased during October 2020 and subsequently declined.
+The number of Cytomegalyvirus cases can be differ by diagnosis. In this study, there were 64 cases and 13 different diagnosis.
